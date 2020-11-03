@@ -2,22 +2,22 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init({
-  traceUser: true,
-  env: 'mall-7vt8m',
+    traceUser: true,
+    env: 'weixinshangcheng-45ee6c',
 })
 
 const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-  const user = wxContext.OPENID
+    const wxContext = cloud.getWXContext()
+    const user = wxContext.OPENID
 
-  // Order List
-  const orderRes = await db.collection('order').where({
-    user,
-  }).get()
-  const orderList = orderRes.data
+    // Order List
+    const orderRes = await db.collection('order').where({
+        user,
+    }).get()
+    const orderList = orderRes.data
 
-  return orderList
+    return orderList
 }

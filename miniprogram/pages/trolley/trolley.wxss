@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 24rpx;
+  margin-top: 20px;
 }
 
 .trolley-total {
@@ -50,7 +51,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 54rpx;
+  top: 100rpx;
   bottom: 100rpx;
   padding-bottom: 30rpx;
 }

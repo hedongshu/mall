@@ -2,22 +2,22 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init({
-  traceUser: true,
-  env: 'mall-7vt8m',
+    traceUser: true,
+    env: 'weixinshangcheng-45ee6c',
 })
 
 const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-  const user = wxContext.OPENID
+    const wxContext = cloud.getWXContext()
+    const user = wxContext.OPENID
 
-  // trolley list
-  const trolleyRes = await db.collection('trolley').where({
-    user,
-  }).get()
-  const trolleyList = trolleyRes.data
+    // trolley list
+    const trolleyRes = await db.collection('trolley').where({
+        user,
+    }).get()
+    const trolleyList = trolleyRes.data
 
-  return trolleyList
+    return trolleyList
 }

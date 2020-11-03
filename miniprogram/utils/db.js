@@ -1,114 +1,114 @@
 const util = require('./util')
 
 const db = wx.cloud.database({
-  env: 'mall-7vt8m'
+    env: 'weixinshangcheng-45ee6c'
 })
 
 module.exports = {
-  getProductList() {
-    return db.collection('product').get()
-  },
+    getProductList() {
+        return db.collection('product').where({}).get()
+    },
 
-  getProductDetail(id) {
-    return wx.cloud.callFunction({
-      name: 'productDetail',
-      data: {
-        id
-      },
-    })
-  },
-
-  getOrderList() {
-    return wx.cloud.callFunction({
-      name: 'getOrderList'
-    })
-  },
-
-  addOrder(data) {
-    return util.isAuthenticated()
-      .then(() => {
+    getProductDetail(id) {
         return wx.cloud.callFunction({
-          name: 'addOrder',
-          data,
+            name: 'productDetail',
+            data: {
+                id
+            },
         })
-      })
-      .catch(() => {
-        wx.showToast({
-          icon: 'none',
-          title: '请先登录'
-        })
-        return {}
-      })
-  },
+    },
 
-  getTrolleyList() {
-    return wx.cloud.callFunction({
-      name: 'getTrolleyList'
-    })
-  },
-
-  addTrolley(data) {
-    return util.isAuthenticated()
-      .then(() => {
+    getOrderList() {
         return wx.cloud.callFunction({
-          name: 'addTrolley',
-          data,
+            name: 'getOrderList'
         })
-      })
-      .catch(() => {
-        wx.showToast({
-          icon: 'none',
-          title: '请先登录'
-        })
-        return {}
-      })
-  },
+    },
 
-  updateTrolley(list) {
-    return util.isAuthenticated()
-      .then(() => {
+    addOrder(data) {
+        return util.isAuthenticated()
+            .then(() => {
+                return wx.cloud.callFunction({
+                    name: 'addOrder',
+                    data,
+                })
+            })
+            .catch(() => {
+                wx.showToast({
+                    icon: 'none',
+                    title: '请先登录'
+                })
+                return {}
+            })
+    },
+
+    getTrolleyList() {
         return wx.cloud.callFunction({
-          name: 'updateTrolley',
-          data: {
-            list,
-          },
+            name: 'getTrolleyList'
         })
-      }).catch(() => {
-        wx.showToast({
-          icon: 'none',
-          title: '请先登录'
-        })
-        return {}
-      })
-  },
+    },
 
-  addComment(data) {
-    return util.isAuthenticated()
-      .then(() => {
-        return wx.cloud.callFunction({
-          name: 'addComment',
-          data,
-        })
-      }).catch(() => {
-        wx.showToast({
-          icon: 'none',
-          title: 'Please Login First'
-        })
-        return {}
-      })
-  },
+    addTrolley(data) {
+        return util.isAuthenticated()
+            .then(() => {
+                return wx.cloud.callFunction({
+                    name: 'addTrolley',
+                    data,
+                })
+            })
+            .catch(() => {
+                wx.showToast({
+                    icon: 'none',
+                    title: '请先登录'
+                })
+                return {}
+            })
+    },
 
-  getComments(productId) {
-    return db.collection('review').where({
-      productId,
-    }).get()
-  },
+    updateTrolley(list) {
+        return util.isAuthenticated()
+            .then(() => {
+                return wx.cloud.callFunction({
+                    name: 'updateTrolley',
+                    data: {
+                        list,
+                    },
+                })
+            }).catch(() => {
+                wx.showToast({
+                    icon: 'none',
+                    title: '请先登录'
+                })
+                return {}
+            })
+    },
 
-  uploadImage(imgPath) {
-    return wx.cloud.uploadFile({
-      cloudPath: `review/${util.getId()}`,
-      filePath: imgPath,
-    })
-  }
+    addComment(data) {
+        return util.isAuthenticated()
+            .then(() => {
+                return wx.cloud.callFunction({
+                    name: 'addComment',
+                    data,
+                })
+            }).catch(() => {
+                wx.showToast({
+                    icon: 'none',
+                    title: 'Please Login First'
+                })
+                return {}
+            })
+    },
+
+    getComments(productId) {
+        return db.collection('review').where({
+            productId,
+        }).get()
+    },
+
+    uploadImage(imgPath) {
+        return wx.cloud.uploadFile({
+            cloudPath: `review/${util.getId()}`,
+            filePath: imgPath,
+        })
+    }
 
 }

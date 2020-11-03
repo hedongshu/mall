@@ -6,7 +6,11 @@
     "pages/user/user",
     "pages/detail/detail",
     "pages/add-comment/add-comment",
-    "pages/comment/comment"
+    "pages/comment/comment",
+    "pages/classification/classification",
+    "pages/address/address",
+    "pages/order/detail/detail",
+    "pages/trolley/settlement/settlement"
   ],
   "tabBar": {
     "color": "#5d5f64",
@@ -22,10 +26,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/order/order",
+        "pagePath": "pages/classification/classification",
         "iconPath": "images/order.png",
         "selectedIconPath": "images/order-sel.png",
-        "text": "订单"
+        "text": "分类"
       },
       {
         "pagePath": "pages/trolley/trolley",
